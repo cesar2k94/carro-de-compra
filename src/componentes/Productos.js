@@ -1,29 +1,37 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Productos = () => {
-    const productos = [
-        {id: 1, nombre: 'Producto 1'},
-        {id: 2, nombre: 'Producto 2'},
-        {id: 3, nombre: 'Producto 3'},
-        {id: 4, nombre: 'Producto 4'}
-    ];
+const Productos = ({productos, carrito, cambiarCarrito}) => {
+
+    const Cantidad = (id) =>{
+        cambiarCarrito(carrito.map((producto)=>{
+            console.log(id);
+            if (producto.id===id) {
+                return {...producto, cantidad: producto.cantidad+1};
+            } else {
+                return producto;
+            }
+        }));
+    }
 
     return (
         <div>
             <h3>Productos</h3>
             <ContenedorProductos>
-                {productos.map((producto, index)=>{
-                    return(
+                {carrito.map((producto, index) => {
+                    return (
                         <Producto>
                             <p key={index}>{producto.nombre}</p>
-                            <Boton>Agregar al carrito</Boton>
+                            <Boton 
+                                onClick={()=>Cantidad(producto.id)}>
+                                Agregar al carrito
+                            </Boton>
                         </Producto>
                     )
                 })}
             </ContenedorProductos>
         </div>
-     );
+    );
 }
 
 const ContenedorProductos = styled.div`
@@ -32,8 +40,8 @@ const ContenedorProductos = styled.div`
     gap: 20px;
     padding: 20px 0;
 `;
- 
-const Producto =  styled.div`
+
+const Producto = styled.div`
     padding: 20px;
     border: 1px solid #ebeef3;
     border-radius: 5px;
@@ -44,7 +52,7 @@ const Producto =  styled.div`
         font-weight: bold;
     }
 `;
- 
+
 const Boton = styled.button`
     border: none;
     background: #1c85e8;
