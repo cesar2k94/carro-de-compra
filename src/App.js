@@ -8,13 +8,7 @@ import Error404 from './componentes/Error404';
 import Carrito from './componentes/Carrito';
 
 function App() {
-  const productos = [
-    { id: 1, nombre: 'Producto 1', cantidad:2 },
-    { id: 2, nombre: 'Producto 2', cantidad:3 },
-    { id: 3, nombre: 'Producto 3', cantidad:1 },
-    { id: 4, nombre: 'Producto 4', cantidad:5 }
-  ];
-
+  
   const [carrito, cambiarCarrito]= useState([
     { id: 1, nombre: 'Producto 1', cantidad:2 },
     { id: 2, nombre: 'Producto 2', cantidad:3 },
@@ -33,7 +27,7 @@ function App() {
           <Route path="/" exact={true} component={Inicio} />
           <Route path="/blog" component={Blog} />
           <Route path="/tienda">
-            <Tienda productos={productos} cambiarCarrito={cambiarCarrito} carrito={carrito}/>
+            <Tienda cambiarCarrito={cambiarCarrito} carrito={carrito}/>
           </Route>
           <Route component={Error404} />
         </Switch>

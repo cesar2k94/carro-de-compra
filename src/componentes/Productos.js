@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Productos = ({productos, carrito, cambiarCarrito}) => {
+const Productos = ({carrito, cambiarCarrito}) => {
 
     const Cantidad = (id) =>{
         cambiarCarrito(carrito.map((producto)=>{
